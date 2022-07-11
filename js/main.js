@@ -22,7 +22,9 @@ function leerTecla(){
             return;
         }
         if(ultimaOperacion=="="){
-            textoInput="0";
+            if(textoInput!="0."){
+                textoInput="0";
+            }
             numerosGuardados = [];
             
         }
@@ -58,7 +60,7 @@ function teclaOperacion(){
             numerosGuardados.push(numeroInput);
             textoInput="";
         }
-        console.log(numerosGuardados)
+        // console.log(numerosGuardados)
         
     }
 
