@@ -42,6 +42,7 @@ function borrarTecla(){
     let borrar=function(){
         input.innerHTML="0";
         textoInput="0";
+        // numerosGuardados = [];
     }
     
     teclaClear.addEventListener("click",borrar)
