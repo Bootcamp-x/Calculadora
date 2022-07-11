@@ -24,8 +24,6 @@ function leerTecla(){
 
 function borrarTecla(){
     let teclaClear = document.querySelector("#clear");
-    console.log(teclaClear);
-    
     let borrar=function(){
         input.innerHTML="0";
         textoInput="";
@@ -36,9 +34,14 @@ function borrarTecla(){
 
 function teclaOperacion(){
 
-console.log("qweqweqw");
-    
+    for(let i=0;i<5;i++){
 
+        console.log(operators[i].innerHTML);
+
+        
+
+    }
+    
 
 }
 
