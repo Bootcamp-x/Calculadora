@@ -4,7 +4,7 @@ let input=document.querySelector("#input");
 let operators=document.querySelectorAll(".operator");
 let textoInput="0";
 input.innerHTML="0"
-let ultimaOperacion;
+let ultimaOperacion="";
 let numerosGuardados=[];
 
 leerTecla();
@@ -18,6 +18,10 @@ function leerTecla(){
         let texTecla=event.srcElement.innerHTML;
         if(!isNumber(textoInput+texTecla)){
             return;
+        }
+        if(texTecla!="."&&textoInput=="0"){
+            textoInput="";
+
         }
         textoInput=textoInput+texTecla;
         input.innerHTML=textoInput;
@@ -40,19 +44,13 @@ function teclaOperacion(){
 
     let guardarNumeroActual = function(){
         
-        let numeroInput=parseInt(textoInput);
-        if(numerosGuardados.length==0){
+        let numeroInput=parseFloat(textoInput);
+        if(!isNaN(numeroInput)){
             numerosGuardados.push(numeroInput);
-        }else{
-            numerosGuardados[1]=numeroInput;
+            textoInput="";
+            console.log(numerosGuardados);
         }
         
-
-
-
-
-        textoInput="";
-        console.log(numerosGuardados);
     }
 
     let ejecutarUlitmaOperacion = function(){
@@ -84,14 +82,14 @@ function teclaOperacion(){
 
                 }else if(operador == "÷"){
 
-                    resultado=numero1+numero2;
+                    resultado=numero1/numero2;
                     
 
                 }
             
 
                 
-     input.innerHTML=" "+resultado ;
+      input.innerHTML=" "+resultado ;
             textoInput="";
             numerosGuardados=[];
             numerosGuardados.push(resultado);
