@@ -4,6 +4,8 @@ let input=document.querySelector("#input");
 let operators=document.querySelectorAll(".operator");
 let textoInput="";
 input.innerHTML="0"
+let ultimaOperacion;
+let numerosGuardados=[];
 
 leerTecla();
 borrarTecla();
@@ -16,7 +18,6 @@ function leerTecla(){
         let texTecla=event.srcElement.innerHTML;
         textoInput=textoInput+texTecla;
         input.innerHTML=textoInput;
-    
     }
     tecla.addEventListener("click",digitar);
     }
@@ -34,14 +35,96 @@ function borrarTecla(){
 
 function teclaOperacion(){
 
-    for(let i=0;i<5;i++){
-
-        console.log(operators[i].innerHTML);
-
+    let guardarNumeroActual = function(){
+        
+        let numeroInput=parseInt(textoInput);
+        if(numerosGuardados.length==0){
+            numerosGuardados.push(numeroInput);
+        }else{
+            numerosGuardados[1]=numeroInput;
+        }
         
 
+
+
+
+        textoInput="";
+        console.log(numerosGuardados);
     }
+
+    let ejecutarUlitmaOperacion = function(){
+        console.log(ultimaOperacion);
+
+            if(numerosGuardados[1]==null){
+                return
+            }
+
+
+
+        if(ultimaOperacion!=null && ultimaOperacion!== "="){
+            console.log("realizar operacion");
+            let numero1 = numerosGuardados[0];
+            let numero2 = numerosGuardados[1];
+            let operador = ultimaOperacion;
+            let resultado=0;
+                if(operador=="+"){
+
+                resultado=numero1+numero2;
+
+                }else if(operador=="-"){
+
+                    resultado=numero1-numero2;
+
+                }else if(operador == "×"){
+
+                    resultado=numero1*numero2;
+
+                }else if(operador == "÷"){
+
+                    resultado=numero1+numero2;
+                    
+
+                }
+            
+
+                
+     input.innerHTML=" "+resultado ;
+            textoInput="";
+            numerosGuardados=[];
+            numerosGuardados.push(resultado);
+                
+         
+
+
+        }else{
+
+            console.log("no se hace nada");
+        }
+
+            
+        
+    }
+
     
+    let actualizarOperacion = function (recibiendo){
+
+        let operadorClick=recibiendo.srcElement.innerHTML;
+       
+        ultimaOperacion=operadorClick;
+
+        // console.log(ultimaOperacion); mostrar cuando haces click
+    }   
+
+   
+    
+    for(let i=0;i<5;i++){
+
+       
+        operators[i].addEventListener("click",guardarNumeroActual);
+        operators[i].addEventListener("click",ejecutarUlitmaOperacion);
+        operators[i].addEventListener("click",actualizarOperacion);
+    }
+
 
 }
 
