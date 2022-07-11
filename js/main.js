@@ -21,6 +21,11 @@ function leerTecla(){
         if(!isNumber(textoInput+texTecla)){
             return;
         }
+        if(ultimaOperacion=="="){
+            textoInput="0";
+            numerosGuardados = [];
+            
+        }
         if(texTecla!="."&&textoInput=="0"){
             textoInput="";
 
@@ -36,7 +41,7 @@ function borrarTecla(){
     let teclaClear = document.querySelector("#clear");
     let borrar=function(){
         input.innerHTML="0";
-        textoInput="";
+        textoInput="0";
     }
     
     teclaClear.addEventListener("click",borrar)
@@ -47,11 +52,12 @@ function teclaOperacion(){
     let guardarNumeroActual = function(){
         
         let numeroInput=parseFloat(textoInput);
-        console.log(textoInput)
+        // console.log(textoInput)
         if(!isNaN(numeroInput)){
             numerosGuardados.push(numeroInput);
             textoInput="";
         }
+        console.log(numerosGuardados)
         
     }
 
