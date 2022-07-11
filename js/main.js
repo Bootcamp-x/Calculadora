@@ -4,18 +4,20 @@ let input=document.querySelector("#input");
 let operators=document.querySelectorAll(".operator");
 let textoInput="0";
 input.innerHTML="0"
-let ultimaOperacion="";
+let ultimaOperacion=null;
 let numerosGuardados=[];
 
 leerTecla();
 borrarTecla();
 teclaOperacion();
-
 function leerTecla(){
     for(let i=0;i<11;i++){
         let tecla=teclasNumero[i];
     let digitar = function(event){
         let texTecla=event.srcElement.innerHTML;
+        if(textoInput+texTecla=="."){
+            textoInput="0"+textoInput;
+        }
         if(!isNumber(textoInput+texTecla)){
             return;
         }
@@ -45,25 +47,19 @@ function teclaOperacion(){
     let guardarNumeroActual = function(){
         
         let numeroInput=parseFloat(textoInput);
+        console.log(textoInput)
         if(!isNaN(numeroInput)){
             numerosGuardados.push(numeroInput);
             textoInput="";
-            console.log(numerosGuardados);
         }
         
     }
 
     let ejecutarUlitmaOperacion = function(){
-        console.log(ultimaOperacion);
-
-            if(numerosGuardados[1]==null){
-                return
-            }
-
-
-
-        if(ultimaOperacion!=null && ultimaOperacion!== "="){
-            console.log("realizar operacion");
+        if(numerosGuardados.length==1){
+            return;
+        }
+        if(ultimaOperacion!=null && ultimaOperacion!= "="){
             let numero1 = numerosGuardados[0];
             let numero2 = numerosGuardados[1];
             let operador = ultimaOperacion;
